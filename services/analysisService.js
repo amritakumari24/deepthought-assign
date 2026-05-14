@@ -393,7 +393,7 @@ async function analyzeTranscript(transcript) {
 
     console.log(`[analysis] completed successfully in ${Date.now() - startedAt}ms`);
 
-    return analysis;
+    return formatAnalysisResponse(analysis);
   } catch (error) {
     if (isProviderUnavailableError(error)) {
       const fallbackAnalysis = buildFallbackAnalysis(
