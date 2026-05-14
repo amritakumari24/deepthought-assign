@@ -43,8 +43,8 @@ export default function ScoreSection({ score = null, justification = '' }) {
     <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-slate-950">Suggested Score</h2>
-          <p className="mt-1 text-sm text-slate-600">AI-suggested score (1–10) — review and adjust as needed.</p>
+          <h2 className="text-base font-semibold text-slate-950">Rubric Score</h2>
+          <p className="mt-1 text-sm text-slate-600">AI-suggested score (1–10) based on transcript content — review before finalizing.</p>
         </div>
         <div className={`inline-flex items-center gap-3 rounded-full px-3 py-1 text-sm font-medium ${bg} ${text} ring-1 ${ring}`}>
           <span className="whitespace-nowrap">Score</span>
@@ -73,7 +73,7 @@ export default function ScoreSection({ score = null, justification = '' }) {
             )}
           </div>
           <p className="mt-2 text-sm leading-7 text-slate-700">{justification || 'No reasoning provided.'}</p>
-          <p className="mt-3 text-xs text-slate-500">💡 Review this reasoning and edit the score if it doesn't align with your assessment.</p>
+          <p className="mt-3 text-xs text-slate-500">Review this reasoning and update the score if it does not align with your assessment.</p>
         </div>
       </div>
     </section>

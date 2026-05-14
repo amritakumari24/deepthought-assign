@@ -16,42 +16,47 @@ function AnalyzePage() {
     error,
     isLoading,
     analyze,
-    reset
+    reset,
+    clearError
   } = useTranscriptAnalysis(sampleTranscript);
 
   return (
-    <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
-      {/* Input Column */}
-      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold text-slate-950">Transcript</h2>
-            <p className="text-sm text-slate-600">
-              Paste a workplace or supervision transcript for structured analysis.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={reset}
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-100"
-          >
-            Reset
-          </button>
-        </div>
-
+    <section className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+      <div className="min-w-0 space-y-4">
         <TranscriptInput transcript={transcript} setTranscript={setTranscript} />
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
-          <SampleTranscriptSelector onSelect={setTranscript} />
-          <AnalyzeButton onClick={analyze} loading={isLoading} disabled={transcript.trim().length === 0} />
+        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <SampleTranscriptSelector onSelect={setTranscript} />
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={reset}
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-100"
+              >
+                Reset
+              </button>
+              <AnalyzeButton
+                onClick={analyze}
+                loading={isLoading}
+                disabled={transcript.trim().length === 0}
+              />
+            </div>
+          </div>
+          <p className="mt-3 text-xs text-slate-500">
+            Paste transcript text, then run analysis to generate evidence, score, KPI mapping, gaps, and follow-up prompts.
+          </p>
         </div>
       </div>
 
-      {/* Results Sidebar */}
-      <aside className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-        <h2 className="text-lg font-semibold text-slate-950">Results</h2>
+      <aside className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-950">Analysis Output</h2>
+        <p className="mt-1 text-sm text-slate-600">
+          Review AI-generated draft sections and validate each finding with your professional judgment.
+        </p>
+
         <div className="mt-6 space-y-6">
-          {error && <ErrorAlert error={error} onClose={() => {}} />}
+          {error && <ErrorAlert error={error} onClose={clearError} />}
 
           {!analysis && !error && <EmptyState />}
 

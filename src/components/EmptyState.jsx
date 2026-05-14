@@ -18,7 +18,7 @@ export default function EmptyState() {
         <div>
           <h3 className="text-lg font-semibold text-slate-900">Ready to analyze a transcript?</h3>
           <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">
-            Paste a supervisor or workplace transcript in the input field above, then click "Run Analysis" to begin the assessment.
+            Paste a supervisor or workplace transcript in the input field, then click Run Analysis to generate a draft assessment.
           </p>
         </div>
 

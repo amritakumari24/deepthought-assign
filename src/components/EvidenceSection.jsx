@@ -26,7 +26,7 @@ function EvidenceCard({ item }) {
         </div>
       </div>
 
-      <blockquote className="mt-3 text-sm leading-7 text-slate-900 italic">"{quote}"</blockquote>
+      <blockquote className="mt-3 wrap-break-word text-sm leading-7 text-slate-900 italic">"{quote}"</blockquote>
 
       {speaker && <cite className="mt-3 block text-xs text-slate-500">— {speaker}</cite>}
     </div>
@@ -35,9 +35,10 @@ function EvidenceCard({ item }) {
 
 export default function EvidenceSection({ evidence = [] }) {
   const { copy, copiedId } = useCopyToClipboard();
+  const items = Array.isArray(evidence) ? evidence : [];
 
   function formatEvidenceForCopy() {
-    return evidence
+    return items
       .map((item) => {
         const parts = [`"${item.quote}"`];
         if (item.speaker) parts.push(`— ${item.speaker}`);
@@ -55,7 +56,7 @@ export default function EvidenceSection({ evidence = [] }) {
           <p className="mt-1 text-sm text-slate-600">AI-identified quotes and observations — verify and expand as needed.</p>
         </div>
         <div className="flex items-center gap-3">
-          {evidence.length > 0 && (
+          {items.length > 0 && (
             <CopyButton
               text={formatEvidenceForCopy()}
               feedbackId="evidence"
@@ -64,17 +65,17 @@ export default function EvidenceSection({ evidence = [] }) {
               label="Copy all"
             />
           )}
-          <div className="text-sm text-slate-600">{evidence.length.toLocaleString()} items</div>
+          <div className="text-sm text-slate-600">{items.length.toLocaleString()} items</div>
         </div>
       </div>
 
-      {evidence.length === 0 ? (
+      {items.length === 0 ? (
         <div className="rounded-md border border-slate-100 bg-slate-50 p-4 text-sm text-slate-600">
           No evidence extracted yet.
         </div>
       ) : (
         <div className="grid gap-5 sm:grid-cols-2">
-          {evidence.map((item, idx) => (
+          {items.map((item, idx) => (
             <EvidenceCard key={idx} item={item} />
           ))}
         </div>

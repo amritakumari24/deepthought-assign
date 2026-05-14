@@ -16,21 +16,14 @@ export default function AnalysisResults({ analysisData = {} }) {
   } = analysisData || {};
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <DraftDisclaimer />
 
-      <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
-        <div className="space-y-8">
-          <EvidenceSection evidence={evidence} />
-          <KPISection kpis={kpis} />
-          <FollowUpSection followUpQuestions={followUpQuestions} />
-        </div>
-
-        <aside className="space-y-8">
-          <ScoreSection score={score} justification={justification} />
-          <GapSection gaps={gaps} />
-        </aside>
-      </section>
+      <EvidenceSection evidence={evidence} />
+      <ScoreSection score={score} justification={justification} />
+      <KPISection kpis={kpis} />
+      <GapSection gaps={gaps} />
+      <FollowUpSection followUpQuestions={followUpQuestions} />
     </div>
   );
 }

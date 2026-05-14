@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:3000/api/analyze';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_URL = `${API_BASE_URL}/api/analyze`;
 
 function parseResponseJson(responseText) {
   try {
@@ -13,13 +14,15 @@ export async function analyzeTranscript(transcript) {
     throw new Error('Transcript must be a non-empty string');
   }
 
+  const sanitizedTranscript = transcript.trim();
+
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ transcript })
+      body: JSON.stringify({ transcript: sanitizedTranscript })
     });
 
     const responseText = await response.text();

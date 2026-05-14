@@ -1,23 +1,26 @@
 export default function GapSection({ gaps = [] }) {
+  const items = Array.isArray(gaps) ? gaps : [];
+
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-slate-950">Suggested Gaps</h2>
+          <h2 className="text-base font-semibold text-slate-950">Gap Analysis</h2>
           <p className="mt-1 text-sm text-slate-600">AI-identified assessment dimensions that may be missing or underrepresented \u2014 review for your context.</p>
         </div>
-        <div className="text-sm text-slate-600">{gaps.length.toLocaleString()} items</div>
+        <div className="text-sm text-slate-600">{items.length.toLocaleString()} items</div>
       </div>
 
-      {gaps.length === 0 ? (
+      {items.length === 0 ? (
         <div className="rounded-md border border-slate-100 bg-slate-50 p-4 text-sm text-slate-600">
           No gaps detected — the transcript appears to cover expected assessment dimensions.
         </div>
       ) : (
         <div className="grid gap-5 sm:grid-cols-2">
-          {gaps.map((gap, idx) => {
-            const name = gap.dimension || gap.name || `Gap ${idx + 1}`;
-            const detail = gap.reason || gap.detail || gap.description || '';
+          {items.map((gap, idx) => {
+            const isTextGap = typeof gap === 'string';
+            const name = isTextGap ? gap : gap.dimension || gap.name || `Gap ${idx + 1}`;
+            const detail = isTextGap ? '' : gap.reason || gap.detail || gap.description || '';
 
             return (
               <article
@@ -31,8 +34,8 @@ export default function GapSection({ gaps = [] }) {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-sm font-semibold text-amber-900 truncate">{name}</h3>
-                  <p className="mt-2 text-sm text-amber-800">{detail || 'No additional details provided.'}</p>
+                  <h3 className="wrap-break-word text-sm font-semibold text-amber-900">{name}</h3>
+                  <p className="mt-2 wrap-break-word text-sm text-amber-800">{detail || 'No additional details provided.'}</p>
                 </div>
               </article>
             );

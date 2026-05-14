@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Feedback favicon">
+  <rect width="64" height="64" rx="10" fill="#e7e7e7"/>
+  <circle cx="27" cy="17" r="7" fill="#2c3ea7"/>
+  <path d="M18 44c0-8 6-14 14-14s14 6 14 14v4H18z" fill="#1aa5dd"/>
+  <rect x="43" y="14" width="15" height="10" rx="3" fill="#8ac441"/>
+  <path d="M50 24l3 4 1-4z" fill="#8ac441"/>
+  <circle cx="47" cy="19" r="1.2" fill="#fff"/>
+  <circle cx="50.5" cy="19" r="1.2" fill="#fff"/>
+  <circle cx="54" cy="19" r="1.2" fill="#fff"/>
+</svg>

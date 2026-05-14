@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { analyzeTranscript } from '../services/analysisApi.js';
+import { analyzeTranscript } from '../services/api.js';
 
 export function useTranscriptAnalysis(initialTranscript = '') {
   const [transcript, setTranscript] = useState(initialTranscript);
@@ -32,6 +32,10 @@ export function useTranscriptAnalysis(initialTranscript = '') {
     setError('');
   }
 
+  function clearError() {
+    setError('');
+  }
+
   return {
     transcript,
     setTranscript,
@@ -39,6 +43,7 @@ export function useTranscriptAnalysis(initialTranscript = '') {
     error,
     isLoading,
     analyze,
-    reset
+    reset,
+    clearError
   };
 }
