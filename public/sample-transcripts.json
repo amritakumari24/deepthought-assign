@@ -1,0 +1,24 @@
+{
+  "samples": [
+    {
+      "id": "sample-1",
+      "title": "Initial Supervision Session",
+      "transcript": "Supervisor: Good morning. How have your first two weeks been? Intern: It's been quite overwhelming actually. There are so many cases and I'm still getting used to the documentation system. Supervisor: That's completely normal. Have you been keeping up with your case notes? Intern: Yes, I've been trying to be thorough, though it takes longer than I expected. I had a client yesterday who was quite resistant to the therapeutic process. Supervisor: Tell me more about that. Intern: Well, they seemed skeptical about whether therapy could help them. I tried to validate their concerns and explained what to expect. Supervisor: How did they respond? Intern: They seemed to open up a bit after that. I think I helped them understand the process better. Supervisor: That's excellent work. It sounds like you handled the resistance with empathy and clarity. What would you do differently if faced with similar resistance? Intern: Maybe I would explain the benefits of therapy more concretely, with examples. Supervisor: Good thinking. Remember that resistance is often a sign of fear. Your job is to create safety. You're doing well."
+    },
+    {
+      "id": "sample-2",
+      "title": "Case Formulation Discussion",
+      "transcript": "Supervisor: Let's dive deeper into your case formulation for Client A. Walk me through your initial assessment. Intern: Based on our intake session, I identified anxiety as the primary presenting concern. The client mentioned intrusive thoughts and avoidance behaviors. Supervisor: What evidence did you gather? Intern: They reported difficulty concentrating at work, physical tension, and they've been avoiding social situations. I haven't done a formal assessment yet though. Supervisor: That's something to prioritize. Which assessment tool would be appropriate? Intern: I think the GAD-7 would be good for measuring generalized anxiety. Supervisor: Excellent choice. How would you use that information? Intern: I could establish a baseline and track progress over time. Supervisor: Right. And how might you involve the client in that process? Intern: I could explain the assessment, show them how it measures their symptoms, and involve them in setting goals. Supervisor: Perfect. That's collaborative and empowering. You're thinking systemically about the work."
+    },
+    {
+      "id": "sample-3",
+      "title": "Challenging Client Interaction Review",
+      "transcript": "Intern: I had a difficult session with Client B today. They became defensive when I mentioned their anger patterns. Supervisor: What specifically triggered that defensiveness? Intern: I said something like 'You seem to get angry pretty quickly.' Supervisor: How might the client have interpreted that? Intern: Now that I think about it, they might have heard it as a criticism. Supervisor: Yes. Let's reframe that. What's another way you could approach it? Intern: I could say 'I've noticed you mentioned feeling frustrated in several situations. Let's explore that together.' Supervisor: That's much better. Notice the difference? You're not labeling; you're inviting exploration. Intern: Right, it's more collaborative. I need to remember that feedback can feel like judgment. Supervisor: Exactly. Your intent was to help, but impact matters. How will you repair this with the client? Intern: I'll acknowledge what happened and try the reframed approach. Supervisor: Good plan. This is valuable learning. These moments are where real growth happens."
+    },
+    {
+      "id": "sample-4",
+      "title": "Wellness and Self-Care Planning",
+      "transcript": "Supervisor: I want to check in about how you're managing the emotional demands of this work. Intern: Honestly, I'm exhausted. Some sessions leave me feeling drained. Supervisor: That's normal in this field. What specific interactions drain you most? Intern: Sessions where clients share trauma are hard. I leave feeling sad and helpless. Supervisor: That's compassion fatigue. How are you managing it? Intern: I try to decompress on the drive home, but it follows me. Supervisor: What self-care are you practicing? Intern: I go to the gym a few times a week. Supervisor: That's good. What else could help? Intern: Maybe I should talk to friends more, or journal about sessions. Supervisor: Both excellent ideas. Remember, you can't pour from an empty cup. Taking care of yourself makes you a better clinician. Intern: That makes sense. I haven't prioritized that. Supervisor: Let's make it part of your plan. What's one thing you'll do this week? Intern: I'll start journaling about my reactions to sessions. Supervisor: Perfect. We'll check in on that next week."
+    }
+  ]
+}

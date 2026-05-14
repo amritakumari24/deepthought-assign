@@ -3,6 +3,10 @@ function normalizeArray(value) {
 }
 
 function normalizeScore(value) {
+  if (value === null || value === undefined || value === '') {
+    return null;
+  }
+
   const score = Number(value);
 
   if (!Number.isFinite(score)) {
