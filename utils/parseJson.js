@@ -13,31 +13,59 @@ function removeMarkdownFences(value) {
     .trim();
 }
 
-function extractJsonCandidate(value) {
-  const objectStart = value.indexOf('{');
-  const objectEnd = value.lastIndexOf('}');
-  const arrayStart = value.indexOf('[');
-  const arrayEnd = value.lastIndexOf(']');
+function extractJsonCandidates(value) {
+  const candidates = [];
 
-  const objectCandidate =
-    objectStart !== -1 && objectEnd !== -1 && objectEnd > objectStart
-      ? value.slice(objectStart, objectEnd + 1)
-      : null;
+  for (let index = 0; index < value.length; index += 1) {
+    const openingChar = value[index];
 
-  const arrayCandidate =
-    arrayStart !== -1 && arrayEnd !== -1 && arrayEnd > arrayStart
-      ? value.slice(arrayStart, arrayEnd + 1)
-      : null;
+    if (openingChar !== '{' && openingChar !== '[') {
+      continue;
+    }
 
-  if (!objectCandidate) {
-    return arrayCandidate;
+    const closingChar = openingChar === '{' ? '}' : ']';
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let cursor = index; cursor < value.length; cursor += 1) {
+      const char = value[cursor];
+
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+
+      if (char === '\\') {
+        escaped = true;
+        continue;
+      }
+
+      if (char === '"') {
+        inString = !inString;
+        continue;
+      }
+
+      if (inString) {
+        continue;
+      }
+
+      if (char === openingChar) {
+        depth += 1;
+      }
+
+      if (char === closingChar) {
+        depth -= 1;
+      }
+
+      if (depth === 0) {
+        candidates.push(value.slice(index, cursor + 1));
+        break;
+      }
+    }
   }
 
-  if (!arrayCandidate) {
-    return objectCandidate;
-  }
-
-  return objectStart < arrayStart ? objectCandidate : arrayCandidate;
+  return candidates;
 }
 
 function parseJson(value) {
@@ -72,13 +100,17 @@ function parseJson(value) {
     return markdownParse;
   }
 
-  const jsonCandidate = extractJsonCandidate(withoutMarkdown);
+  const jsonCandidates = extractJsonCandidates(withoutMarkdown);
 
-  if (!jsonCandidate) {
-    return null;
+  for (const jsonCandidate of jsonCandidates) {
+    const candidateParse = tryParseJson(jsonCandidate);
+
+    if (candidateParse !== null) {
+      return candidateParse;
+    }
   }
 
-  return tryParseJson(jsonCandidate);
+  return null;
 }
 
 module.exports = {

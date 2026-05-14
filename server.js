@@ -6,15 +6,23 @@ const healthRoutes = require('./routes/healthRoutes');
 const analysisRoutes = require('./routes/analysisRoutes');
 const transcriptRoutes = require('./routes/transcriptRoutes');
 const { notFoundHandler } = require('./utils/httpResponses');
+const { config } = require('./config');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-process.env.OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
-process.env.OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.2';
 
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  const startedAt = Date.now();
+
+  console.log(`[request] ${req.method} ${req.originalUrl}`);
+
+  res.on('finish', () => {
+    console.log(`[request] ${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - startedAt}ms`);
+  });
+
+  next();
+});
 
 app.get('/', (_req, res) => {
   res.status(200).json({
@@ -40,6 +48,6 @@ app.use((error, _req, res, _next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Server is running on http://localhost:${config.port}`);
 });

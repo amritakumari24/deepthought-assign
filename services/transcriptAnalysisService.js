@@ -1,12 +1,13 @@
 const { buildTranscriptAnalysisPrompt } = require('../prompts/transcriptAnalysisPrompt');
 const { generateFromOllama } = require('./ollamaService');
+const { config } = require('../config');
 
 async function analyzeTranscriptWithAI(transcript) {
   const prompt = buildTranscriptAnalysisPrompt(transcript);
   const analysis = await generateFromOllama(prompt);
 
   return {
-    model: process.env.OLLAMA_MODEL || 'llama3.2',
+    model: config.ollamaModel,
     analysis
   };
 }

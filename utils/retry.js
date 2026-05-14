@@ -32,6 +32,9 @@ async function retry(operation, options = {}) {
         throw error;
       }
 
+      console.warn(
+        `[retry] attempt ${attempt + 1} failed with ${error.reason}; retrying in ${delayMs}ms`
+      );
       await delay(delayMs);
     }
   }
